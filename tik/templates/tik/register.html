@@ -1,0 +1,17 @@
+<h1>REGISTER</h1>
+
+{% for message in messages %}
+
+{{message}}
+
+{% endfor %}
+
+
+
+<form method="post">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input type="submit">
+</form>

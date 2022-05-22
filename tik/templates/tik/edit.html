@@ -1,0 +1,9 @@
+<h1>Hedit PAGE</h1>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{upload.as_p}}
+
+    <input type="submit">
+</form>

@@ -1,0 +1,65 @@
+<h1>HOME PAGE</h1>
+
+{{user}}
+
+
+<a href="{% url 'login' %}">Login</a>
+<br><br>
+<a href="{% url 'register' %}">Register</a>
+<br><br>
+<a href="{% url 'logout' %}">Logout</a>
+<br>
+<br>
+<a href="{% url 'demandeur' %}">Demandeur</a>
+<br>
+<a href="{% url 'staf' %}">Staff</a>
+<br>
+
+
+
+<br><br>
+<a href="{% url 'upload' %}">upload</a>
+<br><br>
+
+
+
+
+
+<br><br>
+{% if perms.tik.add_postes %}
+<a href="#">delete</a>
+{% endif %}
+<br><br>
+{% for poste in postes %}
+{% if perms.tik.add_postes %}
+<a href="{% url 'update' poste.id %}">Edit</a>
+<a href="{% url 'post' poste.id %}">commente</a>
+
+
+{% endif %}
+<br><br>
+
+<h2>{{poste.titre}}</h2>
+<p>{{poste.desc}}</p>
+{{poste.date_joind}}
+{{poste.pub_date}}
+<p>Créer par {{poste.autheur}}</p>
+
+
+
+{% endfor %}
+
+{% for comment in comments %}
+<div class="comments" style="padding: 10px;">
+  <p class="font-weight-bold">
+    {{ comment.name }}
+    <span class=" text-muted font-weight-normal">
+      {{ comment.created_on }}
+    </span>
+  </p>
+  {{ comment.body | linebreaks }}
+</div>
+{% endfor %}
+
+
+
